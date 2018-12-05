@@ -1,18 +1,19 @@
 class App extends React.Component {
     constructor(props) {
         super(props);
-        this.select = this.select.bind(this),
+        this.addTask = this.addTask.bind(this),
             this.state = {
                 activities: [],
                 key: 0
             }
     }
-    select() {
+    addTask() {
         this.state.activities.push(<li id="tasks" key={this.state.key + 1}>{this.textInput.value} on {this.day.value}/{this.month.value}/{this.year.value}</li>)
         this.setState({
             activities: this.state.activities,
             key: this.state.key + 1
         })
+        this.textInput.value = "";
     }
 
     renderOptions(arr) {
@@ -51,23 +52,27 @@ class App extends React.Component {
                 <select ref={(input) => { this.year = input; }}>
                     {this.renderOptions(dateUtils.years)}
                 </select>
-                <button id="add" onClick={this.select}>New task</button><br />
-                <ul>
-                    {this.state.activities}
-                </ul>
+                <button id="add" onClick={this.addTask}>New task</button><br />
+                <TasksList activities={this.state.activities}/>
             </div>
-
         )
     }
 }
 
 class Title extends React.Component {
-
     render(){
         return <div>
                  <img id="logo" src="./images/logo.png"/>
                  <h1>TUDO BOM</h1>
                </div>
+    }
+}
+
+class TasksList extends React.Component {
+    render(){
+        return  <div id="tasksList">
+                    <ul>{this.props.activities}</ul>
+                </div>
     }
 }
 

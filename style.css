@@ -1,62 +1,113 @@
 body {
-    background: rgb(155, 191, 212);
+  background: rgb(155, 191, 212);
 }
 
-h1{
-    text-align: center;
-    margin-top: 10px;
-    font-size: 40px;
+*:focus {
+  outline: 0;
 }
 
-#logo{
-    position: relative;
-    height: 70px;
-    width: 70px;
-    left: 32%;
-    top: 50px;
+h1 {
+  text-align: center;
+  font-family: "Faster One", cursive;
+  margin-top: 10px;
+  font-size: 60px;
 }
 
-#inputTask{
-    position: relative;
-    border: black;
-    border-radius: 15px;
-    width: 80vw;
-    height: 40px;
-    font-size: 26px;
-    margin: 110px;
+#logo {
+  position: relative;
+  height: 70px;
+  width: 70px;
+  left: 25%;
+  top: 65px;
 }
 
-#inputTask:focus{
-    outline: 0;
+#inputTask {
+  position: relative;
+  border: black;
+  border-radius: 15px;
+  width: 80vw;
+  height: 40px;
+  font-size: 26px;
+  margin: 110px;
 }
 
-#selectDate{
-    position: relative;
-    left: 18.4%;
-    top: -35px;
+#selectDate {
+  position: relative;
+  left: 18.4%;
+  top: -35px;
 }
 
-select{
-    position: relative;
-    background: white;
-    margin: 2px;
-    left: 18%;
-    height: 26px;
-    top: -40px;
+select {
+  position: relative;
+  background: white;
+  margin: 2px;
+  left: 18%;
+  height: 26px;
+  top: -40px;
 }
 
-#add{
-    position: relative;
-    cursor: pointer;
-    left: 58%;
-    border-radius: 6px;
-    height: 40px;
-    width: 100px;
-    font-size: 20px;
-    top: -40px;
+#add {
+  position: relative;
+  cursor: pointer;
+  left: 58%;
+  border-radius: 6px;
+  height: 40px;
+  width: 100px;
+  font-size: 20px;
+  top: -40px;
+  transition-duration: 0.8s;
 }
 
-#tasks{
-    font-family: 'Niconne', cursive;
-    font-size: 26px;
+#add:hover {
+  background-color: rgb(104, 120, 136);
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+
+#tasks {
+  font-family: "Niconne", cursive;
+  font-size: 26px;
+}
+
+#tasksList {
+  position: fixed;
+  width: 600px;
+  height: 450px;
+  padding: 0px;
+  background: beige;
+  border: #000 solid 1px;
+  border-radius: 10px;
+  left: 23%;
+  top: 661px;
+  transition: all 1.5s linear;
+}
+
+#tasksList:after {
+  content: "";
+  position: absolute;
+  top: -26px;
+  left: 274px;
+  border-style: solid;
+  border-width: 0px 26px 26px;
+  border-color: beige transparent;
+  display: block;
+  width: 0;
+  z-index: 1;
+}
+
+#tasksList:before {
+  content: "";
+  position: absolute;
+  bottom: 451px;
+  left: 274px;
+  border-style: solid;
+  border-width: 0px 26px 26px;
+  border-color: #000 transparent;
+  display: block;
+  width: 0;
+  z-index: 0;
+}
+
+#tasksList:hover {
+  top: 200px;
 }
