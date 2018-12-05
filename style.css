@@ -1,0 +1,62 @@
+body {
+    background: rgb(155, 191, 212);
+}
+
+h1{
+    text-align: center;
+    margin-top: 10px;
+    font-size: 40px;
+}
+
+#logo{
+    position: relative;
+    height: 70px;
+    width: 70px;
+    left: 32%;
+    top: 50px;
+}
+
+#inputTask{
+    position: relative;
+    border: black;
+    border-radius: 15px;
+    width: 80vw;
+    height: 40px;
+    font-size: 26px;
+    margin: 110px;
+}
+
+#inputTask:focus{
+    outline: 0;
+}
+
+#selectDate{
+    position: relative;
+    left: 18.4%;
+    top: -35px;
+}
+
+select{
+    position: relative;
+    background: white;
+    margin: 2px;
+    left: 18%;
+    height: 26px;
+    top: -40px;
+}
+
+#add{
+    position: relative;
+    cursor: pointer;
+    left: 58%;
+    border-radius: 6px;
+    height: 40px;
+    width: 100px;
+    font-size: 20px;
+    top: -40px;
+}
+
+#tasks{
+    font-family: 'Niconne', cursive;
+    font-size: 26px;
+}
