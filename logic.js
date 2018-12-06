@@ -2,9 +2,12 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     (this.addTask = this.addTask.bind(this)),
+    (this.removeTask = this.removeTask.bind(this)),
+    (this.moveTask = this.moveTask.bind(this)),
       (this.state = {
         activities: [],
-        key: 0
+        key: 0,
+        activitiesDone: []
       });
   }
   addTask() {
@@ -14,9 +17,9 @@ class App extends React.Component {
         <u>
           {this.day.value}/{this.month.value}/{this.year.value}
         </u>
-        <ButtonList bgColor="red" img="delete" />
+        <ButtonList bgColor="red" img="delete" onClick={this.removeTask}/>
         <ButtonList bgColor="green" img="star" />
-        <ButtonList bgColor="blue" img="checked" />
+        <ButtonList bgColor="blue" img="checked" onClick={this.moveTask}/>
       </li>
     );
     this.setState({
@@ -24,6 +27,21 @@ class App extends React.Component {
       key: this.state.key + 1
     });
     this.textInput.value = "";
+  }
+
+  
+  moveTask(event){
+    var taskSelected = event.target.parentNode.parentNode.parentNode.parentNode
+    this.state.activitiesDone.push(taskSelected.textContent)
+    this.setState({
+      activitiesDone : this.state.activitiesDone
+    })
+    taskSelected.remove()
+  }
+
+  removeTask(event){
+    var taskSelected = event.target.parentNode.parentNode.parentNode.parentNode
+    taskSelected.remove()
   }
 
   renderOptions(arr) {
@@ -102,7 +120,7 @@ class App extends React.Component {
           New task
         </button>
         <br />
-        <Trash />
+        <Trash activitiesDone={this.state.activitiesDone}/>
         <div id="yourList">Your List</div>
         <TasksList activities={this.state.activities} />
       </div>
@@ -174,7 +192,7 @@ class Trash extends React.Component {
   render() {
     return (
       <div>
-        <div id="trashModal" style={{ display: this.state.display }} />
+        <div id="trashModal" style={{ display: this.state.display }}><ul id="activitiesDone">{this.props.activitiesDone}</ul></div>
         <Image id="trash" img="trash" onClick={this.openTrash} />
       </div>
     );
