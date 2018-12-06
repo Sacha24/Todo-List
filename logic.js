@@ -8,7 +8,7 @@ class App extends React.Component {
             }
     }
     addTask() {
-        this.state.activities.push(<li id="tasks" key={this.state.key + 1}>{this.textInput.value} on {this.day.value}/{this.month.value}/{this.year.value}</li>)
+        this.state.activities.push(<li id="tasks" key={this.state.key + 1}>{this.textInput.value} on <u>{this.day.value}/{this.month.value}/{this.year.value}</u><ButtonList/><ButtonList/><ButtonList/></li>)
         this.setState({
             activities: this.state.activities,
             key: this.state.key + 1
@@ -53,6 +53,8 @@ class App extends React.Component {
                     {this.renderOptions(dateUtils.years)}
                 </select>
                 <button id="add" onClick={this.addTask}>New task</button><br />
+                <Trash/>
+                <div id="yourList">Your List</div>
                 <TasksList activities={this.state.activities}/>
             </div>
         )
@@ -62,8 +64,16 @@ class App extends React.Component {
 class Title extends React.Component {
     render(){
         return <div>
-                 <img id="logo" src="./images/logo.png"/>
+                 <Image id="logo" img="logo" />
                  <h1>TUDO BOM</h1>
+               </div>
+    }
+}
+
+class Image extends React.Component {
+    render(){
+        return <div>
+                 <img id={this.props.id} src={"./images/" + this.props.img + ".png"} onClick={this.props.onClick}/>
                </div>
     }
 }
@@ -73,6 +83,36 @@ class TasksList extends React.Component {
         return  <div id="tasksList">
                     <ul>{this.props.activities}</ul>
                 </div>
+    }
+}
+
+class ButtonList extends React.Component {
+    render(){
+        return  <div id="buttonsContainer">
+                    <div id="buttonList"></div>
+                </div>
+    }
+}
+
+class Trash extends React.Component {
+    constructor(props){
+        super(props)
+        this.openTrash = this.openTrash.bind(this)  
+        this.state = {
+            display : "none"
+        }  
+    }
+    openTrash(){
+        this.setState({
+            display : "block"
+        })
+    }
+
+    render(){
+        return <div>
+                <div id="trashModal" style={{display : this.state.display}}></div>
+                <Image id="trash" img="trash" onClick={this.openTrash}/>
+               </div>
     }
 }
 
