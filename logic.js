@@ -115,7 +115,7 @@ class App extends React.Component {
         >
           {this.renderOptions(dateUtils.years)}
         </select>
-        <button id="add" onClick={this.addTask}>
+        <button id="add" onClick={this.addTask} onKeyPress={this.addTask}>
           New task
         </button>
         <br />
@@ -123,7 +123,6 @@ class App extends React.Component {
           activitiesDone={this.state.activitiesDone}
           onTrashClick={this.removeTask}
         />
-        <div id="yourList">To Do List</div>
         <TasksList activities={this.state.activities} />
       </div>
     );
@@ -158,8 +157,12 @@ class Image extends React.Component {
 class TasksList extends React.Component {
   render() {
     return (
-      <div id="tasksList">
-        <ul>{this.props.activities}</ul>
+      <div>
+        <div id="yourList">To Do List</div>
+        <Image img="finger2" id="finger"/>
+        <div id="tasksList">
+          <ul>{this.props.activities}</ul>
+        </div>
       </div>
     );
   }
@@ -223,7 +226,9 @@ class Trash extends React.Component {
               </li>
             ))}
           </ul>
-          <button id="closeButton" onClick={this.closeTrash}>Close</button>
+          <button id="closeButton" onClick={this.closeTrash}>
+            Close
+          </button>
         </div>
         <Image id="trash" img="done" onClick={this.openTrash} />
       </div>
