@@ -1,16 +1,20 @@
 class App extends React.Component {
   constructor(props) {
     super(props);
-    (this.addTask = this.addTask.bind(this)),
-      (this.removeTask = this.removeTask.bind(this)),
-      (this.moveTask = this.moveTask.bind(this)),
-      (this.state = {
-        activities: [],
-        key: 0,
-        activitiesDone: []
-      });
+    this.state = {
+      activities: [],
+      activitiesDone: [],
+      key: 500,
+      key2: 1000
+    };
+    this.addTask = this.addTask.bind(this)
+    this.moveTask = this.moveTask.bind(this)
+    this.removeTask = this.removeTask.bind(this)
+    this.unDoneTask = this.unDoneTask.bind(this)
+    this.addPriority = this.addPriority.bind(this)
   }
-  addTask() {
+  addTask(event) {
+    if (event.target.tagName === "BUTTON" || event.keyCode === 13){
     this.state.activities.push(
       <li id="tasks" key={this.state.key + 1}>
         {this.textInput.value} on{" "}
@@ -18,15 +22,16 @@ class App extends React.Component {
           {this.day.value}/{this.month.value}/{this.year.value}
         </u>
         <ButtonList bgColor="red" img="delete" onClick={this.removeTask} />
-        <ButtonList bgColor="green" img="star" />
+        <ButtonList bgColor="green" img="star" onClick={this.addPriority}/>
         <ButtonList bgColor="blue" img="checked" onClick={this.moveTask} />
       </li>
-    );
+    )
     this.setState({
       activities: this.state.activities,
       key: this.state.key + 1
     });
     this.textInput.value = "";
+    }
   }
 
   moveTask(event) {
@@ -38,8 +43,31 @@ class App extends React.Component {
     taskSelected.remove();
   }
 
+  addPriority(event){
+    var taskSelected = event.target.parentNode.parentNode.parentNode.parentNode;
+    console.log(taskSelected)
+    taskSelected.style.backgroundColor = "white" ? "yellow" : "white"
+  }
+
   removeTask(event) {
     var taskSelected = event.target.parentNode.parentNode.parentNode.parentNode;
+    taskSelected.remove();
+  }
+
+  unDoneTask(event) {
+    var taskSelected = event.target.parentNode.parentNode.parentNode.parentNode;
+    this.state.activities.push(
+      <li id="tasks" key={this.state.key2 + 1}>
+        {taskSelected.textContent}{" "}
+        <ButtonList bgColor="red" img="delete" onClick={this.removeTask} />
+        <ButtonList bgColor="green" img="star" onClick={this.addPriority}/>
+        <ButtonList bgColor="blue" img="checked" onClick={this.moveTask} />
+      </li>
+    );
+    this.setState({
+      activities: this.state.activities,
+      key2 : this.state.key2 + 1
+    });
     taskSelected.remove();
   }
 
@@ -52,20 +80,7 @@ class App extends React.Component {
   }
 
   render() {
-    var months = [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ];
+    var months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
     var days = [];
     var years = [];
 
@@ -85,43 +100,28 @@ class App extends React.Component {
     return (
       <div>
         <Title />
-        <input
-          id="inputTask"
-          type="text"
-          placeholder="Write your task here"
+        <input id="inputTask" type="text" placeholder="Write your task here" onKeyUp={this.addTask}
           ref={input => {
             this.textInput = input;
           }}
         />
         <div id="selectDate">Select the date :</div>
-        <select
-          ref={input => {
-            this.day = input;
-          }}
-        >
+
+        <select ref={input => {this.day = input;}}>
           {this.renderOptions(dateUtils.days)}
         </select>
-        <select
-          ref={input => {
-            this.month = input;
-          }}
-        >
+        <select ref={input => {this.month = input;}}>
           {this.renderOptions(dateUtils.months)}
         </select>
-        <select
-          ref={input => {
-            this.year = input;
-          }}
-        >
+        <select ref={input => {this.year = input;}}>
           {this.renderOptions(dateUtils.years)}
         </select>
-        <button id="add" onClick={this.addTask} onKeyPress={this.addTask}>
-          New task
-        </button>
-        <br />
+
+        <button id="add" onClick={this.addTask}>New task</button>
         <Trash
           activitiesDone={this.state.activitiesDone}
           onTrashClick={this.removeTask}
+          onCancelClick={this.unDoneTask}
         />
         <TasksList activities={this.state.activities} />
       </div>
@@ -144,11 +144,7 @@ class Image extends React.Component {
   render() {
     return (
       <div>
-        <img
-          id={this.props.id}
-          src={"./images/" + this.props.img + ".png"}
-          onClick={this.props.onClick}
-        />
+        <img id={this.props.id} src={"./images/" + this.props.img + ".png"} onClick={this.props.onClick}/>
       </div>
     );
   }
@@ -159,7 +155,7 @@ class TasksList extends React.Component {
     return (
       <div>
         <div id="yourList">To Do List</div>
-        <Image img="finger2" id="finger"/>
+        <Image img="finger2" id="finger" />
         <div id="tasksList">
           <ul>{this.props.activities}</ul>
         </div>
@@ -187,12 +183,12 @@ class ButtonList extends React.Component {
 class Trash extends React.Component {
   constructor(props) {
     super(props);
-    this.openTrash = this.openTrash.bind(this);
-    this.closeTrash = this.closeTrash.bind(this);
     this.state = {
       display: "none",
       activitiesDone: this.props.activitiesDone
     };
+    this.openTrash = this.openTrash.bind(this);
+    this.closeTrash = this.closeTrash.bind(this);
   }
   openTrash() {
     this.setState({
@@ -217,18 +213,12 @@ class Trash extends React.Component {
             {this.props.activitiesDone.map(i => (
               <li id="activitiesDone" key={i.index}>
                 <strike>{i}</strike>
-                <ButtonList
-                  bgColor="red"
-                  img="delete"
-                  onClick={this.props.onTrashClick}
-                />
-                <ButtonList img="cancel" />
+                <ButtonList bgColor="red" img="delete" onClick={this.props.onTrashClick}/>
+                <ButtonList img="cancel" onClick={this.props.onCancelClick} />
               </li>
             ))}
           </ul>
-          <button id="closeButton" onClick={this.closeTrash}>
-            Close
-          </button>
+          <button id="closeButton" onClick={this.closeTrash}>Close</button>
         </div>
         <Image id="trash" img="done" onClick={this.openTrash} />
       </div>

@@ -198,10 +198,10 @@ select {
 }
 
 #closeButton {
-  position: relative;
+  position: absolute;
   cursor: pointer;
   left: 78%;
-  top: 350px;
+  top: 385px;
   border-radius: 6px;
   height: 40px;
   width: 100px;
