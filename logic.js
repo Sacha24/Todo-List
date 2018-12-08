@@ -30,6 +30,8 @@ class App extends React.Component {
       this.setState({
         placeholder : newPlaceholder
       })
+    } else if (this.textInput.value.length > 40){
+      alert("40 characters maximum")
     }
     else if (event.target.tagName === "BUTTON" || event.keyCode === 13){
       Sound.input.play();
