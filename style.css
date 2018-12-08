@@ -1,8 +1,11 @@
 body {
-  background-image: url(https://www.tourdumonde.fr/wordpress/wp-content/uploads/Rio-de-Janeiro.jpg);
+/*   background-image: url(https://s1.it.atcdn.net/wp-content/uploads/2014/12/Rio-6.jpg);
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: cover; */
+  background-image: linear-gradient(to right bottom, rgb(44, 94, 128), white)
 }
+
+/* rgb(44, 94, 128) */
 
 *:focus {
   outline: 0;
@@ -10,17 +13,17 @@ body {
 
 h1 {
   text-align: center;
-  font-family: "Faster One", cursive;
+  font-family: 'Rock Salt', cursive;
   margin-top: -40px;
-  font-size: 70px;
+  font-size: 50px;
 }
 
 #logo {
   position: relative;
   height: 70px;
   width: 70px;
-  left: 23%;
-  top: 30px;
+  left: 25%;
+  top: 50px;
 }
 
 #inputTask {
@@ -36,8 +39,9 @@ h1 {
 
 #selectDate {
   position: relative;
-  color: #fb2738;
   font-weight: bold;
+  font-family: 'Leckerli One', cursive;
+  color: rgba(255, 222, 36, 0.804);
   top: -35px;
   margin-left: 208px;
   font-size: 24px;
@@ -75,16 +79,17 @@ select {
   text-align: center;
   color: white;
   font-weight: bold;
-  top: 20px;
-  margin-left: 50px;
+  font-family: 'Leckerli One', cursive;
   font-size: 60px;
+  margin-left: 60px;
+  margin-top: -20px;
 }
 
 #finger {
   height: 80px;
   width: 80px;
   margin-left: 523px;
-  margin-top: 30px;
+  margin-top: 5px;
 }
 
 #tasks {
@@ -100,7 +105,7 @@ select {
 #tasksPriority{
   font-family: "Niconne", cursive;
   border: 1px solid black;
-  background-color: yellow;
+  background-color: rgba(0, 197, 0, 0.677);
   font-size: 26px;
   border-radius: 30px;
   margin-right: 50px;
@@ -135,8 +140,8 @@ select {
   width: 600px;
   height: 450px;
   padding: 0px;
-  background: rgba(251, 39, 57, 0.5);
-  border: rgba(251, 39, 57, 0.5) solid 1px;
+  background: rgba(255, 222, 36, 0.804);
+  border: rgba(255, 222, 36, 0.804) solid 1px;
   border-radius: 10px;
   left: 23%;
   top: 661px;
@@ -150,7 +155,7 @@ select {
   left: 274px;
   border-style: solid;
   border-width: 0px 26px 26px;
-  border-color: rgba(251, 39, 57, 0.5) transparent;
+  border-color: rgba(255, 222, 36, 0.804) transparent;
   z-index: 1;
 }
 
@@ -161,7 +166,7 @@ select {
   left: 274px;
   border-style: solid;
   border-width: 0px 26px 26px;
-  border-color: rgba(251, 39, 57, 0.5) transparent;
+  border-color: rgba(255, 222, 36, 0.804) transparent;
   z-index: 0;
 }
 
@@ -175,7 +180,7 @@ select {
   height: 80px;
   width: 55px;
   margin-right: 15px;
-  margin-top: 100px;
+  margin-top: 60px;
 }
 
 #trashModal {

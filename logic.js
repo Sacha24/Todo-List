@@ -44,12 +44,12 @@ class App extends React.Component {
          <ButtonList bgColor="blue" img="checked" onClick={this.moveTask} />
         </li>
       )
-    this.setState({
-      activities: this.state.activities,
-      key: this.state.key + 1,
-      placeholder : "Write your task here"
-    });
-    this.textInput.value = "";
+      this.setState({
+        activities: this.state.activities,
+        key: this.state.key + 1,
+        placeholder : "Write your task here"
+      });
+      this.textInput.value = "";
     }
   }
 
@@ -132,7 +132,7 @@ class App extends React.Component {
         <input id="inputTask" type="text" placeholder={this.state.placeholder} onKeyUp={this.addTask}
           ref={input => {this.textInput = input;}}/>
 
-        <div id="selectDate">Select the date :</div>
+        <div id="selectDate">Date :</div>
         <select ref={input => {this.day = input;}}>
           {this.renderOptions(dateUtils.days)}
         </select>
@@ -160,7 +160,7 @@ class Title extends React.Component {
     return (
       <div>
         <Image id="logo" img="logo" />
-        <h1>TUDO BOM</h1>
+        <h1>TODO BOM</h1>
       </div>
     );
   }
@@ -180,7 +180,7 @@ class TasksList extends React.Component {
   render() {
     return (
       <div>
-        <div id="yourList">To Do List</div>
+        <div id="yourList">My List</div>
         <Image img="finger2" id="finger" />
         <div id="tasksList">
           <ul>{this.props.activities}</ul>
