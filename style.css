@@ -1,11 +1,6 @@
 body {
-/*   background-image: url(https://s1.it.atcdn.net/wp-content/uploads/2014/12/Rio-6.jpg);
-  background-repeat: no-repeat;
-  background-size: cover; */
   background-image: linear-gradient(to right bottom, rgb(44, 94, 128), white)
 }
-
-/* rgb(44, 94, 128) */
 
 *:focus {
   outline: 0;
